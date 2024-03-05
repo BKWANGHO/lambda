@@ -5,6 +5,7 @@ import enums.Messenger;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class UserController {
@@ -38,13 +39,10 @@ public class UserController {
                 );
     }
 
-    public String findUserBYId(Scanner sc) {
-        return service.findUserBYId(User.builder()
-                .username(sc.next())
-                .build()
-        );
+    public Optional<User> findUserBYId(Scanner sc) {
+        return service.findById(Long.parseLong(sc.next()));
     }
-    public Map<String, ?> addUsers() {
+    public String addUsers() {
         return service.addUsers();
     }
     public String updatePassword(Scanner sc) {
@@ -74,10 +72,13 @@ public class UserController {
 
     }
 
+
     public List<?> findUserByJob(Scanner sc) {
         return service.findUserByJob(sc.next());
     }
-
+//    public Map<String,?> findUserByJob(Scanner sc) {
+//        return service.findUserByJobFromMap(sc.next());
+//    }
     public String countUser() {
         return service.count();
     }

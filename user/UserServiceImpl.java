@@ -8,6 +8,7 @@ import enums.Messenger;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
@@ -22,96 +23,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return instance;
     }
 
-
-    @Override
-    public String login(User user) {
-        return users.getOrDefault(user.getUsername(),User.builder().password("").build())
-                .getPassword().equals(user.getPassword())? "로그인 성공" : "로그인 실패";
-    }
-
-    @Override
-    public Map<String, User> addUsers() {
-        UtilService util = UtilServiceImpl.getInstance();
-        for (int i = 0; i < 5; i++) {
-            String username = util.createRandomUsername();
-            users.put(username,
-                    User.builder()
-                            .username(username)
-                            .password("123")
-                            .confirmPassword("123")
-                            .name(util.createRandomName())
-                            .job(util.createRandomJob())
-                            .build());
-        }
-        return users;
-    }
-
-    @Override
-    public String findUserBYId(User user) {
-        User userInMap = users.get(user.getUsername());
-        String result ="";
-        if (userInMap != null) {
-            userInMap = users.get(user.getUsername());
-            result = "사용중인 아이디입니다.";
-        } else {
-            result = "없는 아이디입니다.";
-        }
-        return result;
-    }
-
-    @Override
-    public String updatePassword(User user) {
-        User userInMap = users.get(user.getUsername());
-        String result = "";
-        if (userInMap != null) {
-            userInMap.setPassword(user.getPassword());
-            userInMap.setConfirmPassword(user.getPassword());
-            result = "비밀번호 변경 성공!";
-        } else {
-            result = "없는 아이디입니다.";
-        }
-        return result;
-    }
-
-
-
-    @Override
-    public List<?> findUserByName(String name) {
-        return users
-                .values()
-                .stream()
-                .filter(i->i.getName().equals(name))
-                .collect((Collectors.toList()));
-    }
-
-    public Map<String, ?> findUserByNameFromMap(String name){
-        return users
-                .entrySet()
-                .stream()
-                .filter(i ->i.getKey().equals(name))
-                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-    }
-    @Override
-    public List<?> findUserByJob(String job) {
-                return users
-                        .values()
-                        .stream()
-                        .filter(i->i.getJob().equals(job))
-                        .collect((Collectors.toList()));
-    }
-
-    public Map<String, ?> findUserByJobFromMap(String job) {
-        return users
-                .entrySet()
-                .stream()
-                .filter(i->i.getKey().equals(job))
-                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-    }
-
     @Override
     public Messenger save(User user) {
 
-        users.put(user.getUsername(),user);
+        users.put(user.getUsername(), user);
         return Messenger.SUCCESS;
     }
 
@@ -121,13 +36,74 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Optional findById(Long id) {
-        return Optional.of(users.get(id));
+    public String login(User user) {
+        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
+                .getPassword().equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
+    }
+
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return Optional.of(users
+                .values()
+                .stream()
+                .filter(i -> i.getId().equals(id))
+                .collect(Collectors.toList()).get(0));
+
+    }
+
+
+    @Override
+    public String updatePassword(User user) {
+        users.get(user.getUsername()).setPassword(user.getConfirmPassword());
+//        users.get(user.getUsername()).setPassword(user.getPassword());
+        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
+                .getPassword().isEmpty() ? "변경실패" : "변경완료";
+
+
+    }
+
+    @Override
+    public String delete(User user) {
+        users.remove(user.getUsername());
+        return "삭제완료";
+    }
+
+    @Override
+    public Boolean existsById(Long id) {
+        return users.containsKey(id);
+    }
+
+    @Override
+    public List<?> findUserByName(String name) {
+        return users
+                .values()
+                .stream()
+                .filter(i -> i.getName().equals(name))
+                .collect((Collectors.toList()));
+    }
+
+
+    @Override
+    public List<?> findUserByJob(String job) {
+        return users
+                .values()
+                .stream()
+                .filter(i -> i.getJob().equals(job))
+                .collect((Collectors.toList()));
+    }
+
+    public Map<String, ?> findUserByJobFromMap(String job) {
+        return users
+                .entrySet()
+                .stream()
+                .filter(i -> i.getKey().equals(job))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     @Override
     public String count() {
-        return users.size()+"";
+        return users.size() + "";
     }
 
     @Override
@@ -136,25 +112,19 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public String delete(User user) {
-        User userInMap = users.get(user.getUsername());
-        String result = "";
-        if (userInMap != null) {
-            users.remove(userInMap.getUsername());
-            result = "삭제완료";
-        } else {
-            result = "없는 아이디입니다.";
-        }
-        return result;
+    public String addUsers() {
+
+        IntStream.range(0, 5)
+                .mapToObj(i -> UtilServiceImpl.getInstance().createRandomUsername())
+                .forEach(i -> users.put(i, User.builder()
+                        .username(i)
+                        .password("1")
+                        .name(UtilServiceImpl.getInstance().createRandomName())
+                        .job(UtilServiceImpl.getInstance().createRandomJob())
+                        .build()));
+
+        return "5명 추가";
+
     }
 
-    @Override
-    public String deleteAll() {
-        return null;
-    }
-
-    @Override
-    public Boolean existsById(Long id) {
-        return null;
-    }
 }

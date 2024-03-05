@@ -7,7 +7,7 @@ public class CrawlerController {
 
 
     public Map<String,?> findBugsMusic(Scanner sc) {
-        
+
         return null;
     }
 }

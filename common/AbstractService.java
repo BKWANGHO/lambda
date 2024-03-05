@@ -12,7 +12,6 @@ public abstract class AbstractService<T> {
     public abstract String count();
     public abstract Optional<T> getOne(String id);
     public abstract String delete (T t);
-    public abstract String deleteAll();
     public abstract Boolean existsById(Long id);
 
 

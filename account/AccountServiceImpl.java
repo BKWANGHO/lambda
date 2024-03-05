@@ -111,10 +111,6 @@ public class AccountServiceImpl extends AbstractService<Account> implements Acco
         return null;
     }
 
-    @Override
-    public String deleteAll() {
-        return null;
-    }
 
     @Override
     public Boolean existsById(Long id) {

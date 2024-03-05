@@ -7,9 +7,8 @@ public interface UserService {
 
     String login(User user);
 
-    Map<String, ?> addUsers();
+    String addUsers();
 
-    String findUserBYId(User user);
 
     String updatePassword(User user);
 
@@ -17,7 +16,6 @@ public interface UserService {
 
     List<?> findUserByJob(String job);
 
-    Map<String, ?> findUserByNameFromMap(String name);
 
 }
 

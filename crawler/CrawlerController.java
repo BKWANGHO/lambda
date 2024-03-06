@@ -4,7 +4,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CrawlerController {
-
+    CrawlerServiceImpl service;
+    public CrawlerController() {
+        this.service = CrawlerServiceImpl.getInstance();
+    }
 
     public Map<String,?> findBugsMusic(Scanner sc) {
 

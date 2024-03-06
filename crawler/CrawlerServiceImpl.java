@@ -22,10 +22,16 @@ public class CrawlerServiceImpl implements CrawlerService{
         return instance;
     }
 
-    @Override
-    public Map<String,?> findNamesFromWeb(Map<String,?> paramMap) throws IOException {
-    return repository.save(paramMap);
 
+    @Override
+    public Map<String, ?> findNamesFromWebMelon(Map<String, String> paramMap) throws IOException {
+        return repository.saveMelon(paramMap);
     }
 
+    @Override
+    public Map<String,?> findNamesFromWebBugs(Map<String,String> paramMap) throws IOException {
+
+        return repository.saveBugs(paramMap);
+
+    }
 }

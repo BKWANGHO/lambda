@@ -1,16 +1,27 @@
 package crawler;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class CrawlerController {
-    CrawlerServiceImpl service;
+    private CrawlerServiceImpl service;
     public CrawlerController() {
         this.service = CrawlerServiceImpl.getInstance();
     }
 
-    public Map<String,?> findBugsMusic(Scanner sc) {
+    public Map<String,?> findBugsMusic(Scanner sc) throws IOException {
+        System.out.println("크롤링할 주소를 입력하시오.");
+        Map<String,String> paramMap = new HashMap<>();
+        paramMap.put("URL",sc.next());
+        return service.findNamesFromWebBugs(paramMap);
+    }
 
-        return null;
+    public Map<String,?> findMelonMusic(Scanner sc) throws IOException {
+        System.out.println("크롤링할 주소를 입력하시오.");
+        Map<String,String> paramMap = new HashMap<>();
+        paramMap.put("URL",sc.next());
+        return service.findNamesFromWebMelon(paramMap);
     }
 }

@@ -1,7 +1,9 @@
 package user;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public interface UserService {
 
@@ -17,5 +19,10 @@ public interface UserService {
     List<?> findUserByJob(String job);
 
 
+    String test();
+
+    List<?> findUsers() throws SQLException;
+
+    User getUser(String id);
 }
 

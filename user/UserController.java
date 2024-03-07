@@ -3,6 +3,7 @@ package user;
 
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,10 +43,14 @@ public class UserController {
     public Optional<User> findUserBYId(Scanner sc) {
         return service.findById(Long.parseLong(sc.next()));
     }
+
     public String addUsers() {
         return service.addUsers();
     }
+
+
     public String updatePassword(Scanner sc) {
+
 
         return service.updatePassword(User.builder()
                 .username(sc.next())
@@ -81,5 +86,23 @@ public class UserController {
 //    }
     public String countUser() {
         return service.count();
+    }
+
+    public Optional<User> getOne(Scanner sc) throws SQLException {
+        return service.getOne(sc.next());
+    }
+
+    public String test() {
+        return service.test();
+    }
+
+    public List<?> findUsers() throws SQLException {
+
+        return service.findUsers();
+    }
+
+    public User getUser(Scanner sc) {
+
+        return service.getUser(sc.next());
     }
 }

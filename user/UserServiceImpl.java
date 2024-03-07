@@ -1,11 +1,13 @@
 package user;
 
 
+import account.Account;
 import common.AbstractService;
 import common.UtilService;
 import common.UtilServiceImpl;
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,9 +15,11 @@ import java.util.stream.IntStream;
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     Map<String, User> users;
+    UserRepository repository;
     private static UserServiceImpl instance = new UserServiceImpl();
 
     private UserServiceImpl() {
+        this.repository = UserRepository.getInstance();
         this.users = new HashMap<>();
     }
 
@@ -93,6 +97,21 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                 .collect((Collectors.toList()));
     }
 
+    @Override
+    public String test() {
+        return repository.test();
+    }
+
+    @Override
+    public List<?> findUsers() throws SQLException {
+        return repository.findUsers();
+    }
+
+    @Override
+    public User getUser(String id) {
+        return repository.getuser(id);
+    }
+
     public Map<String, ?> findUserByJobFromMap(String job) {
         return users
                 .entrySet()
@@ -107,7 +126,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Optional<User> getOne(String id) {
+    public Optional<User> getOne(String id) throws SQLException {
         return Optional.of(users.get(id));
     }
 
@@ -124,7 +143,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                         .build()));
 
         return "5명 추가";
-
     }
 
 }

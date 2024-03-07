@@ -33,22 +33,25 @@ public class UserRepository {
     }
 
     public List<?> findUsers() throws SQLException {
-        String sql = "select * from board";
+        String sql = "select * from articles";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         System.out.println("연결완료");
-        while ((rs.next())){
-            System.out.printf("ID: %d\t Title : %s\t content: %s\t Writer: %s\n",
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4));
+        if (rs.next()) {
+            do {
+                System.out.printf("ID: %d\t Title : %s\t content: %s\t Writer: %s\n",
+                        rs.getInt("id"),
+                        rs.getString("Title"),
+                        rs.getString("content"),
+                        rs.getString("Writer"));
 
+            } while ((rs.next()));
+        }else{
+            System.out.println("데이터가 없습니다.");
+        }
 //        rs.next();
 //        String name = rs.getString("name");
 //        System.out.println(name);
-        }
-
         rs.close();
         pstmt.close();
         connection.close();

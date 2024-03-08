@@ -15,7 +15,6 @@ public class MathProxy {
     public static Function<Float,Integer> ceilFloat = (a)-> (int) Math.ceil(a);
     public static Function<Float,Integer> floorFloat = (a)-> (int)Math.floor(a);
     public static Function<Float,Integer> roundFloat = (a)-> (int)Math.round(a);
-    public static Function<String,Integer> parseint = Integer::parseInt;
 
 
     public static Supplier<Double> randomDouble = Math :: random;
@@ -28,6 +27,8 @@ public class MathProxy {
     public static Function<Float,Float> absFloate = Math :: abs;
     public static BiFunction<Float,Float,Float> maxFloat = Math :: max;
     public static BiFunction<Float,Float,Float> minFloat = Math :: min;
+
+
 
 
 

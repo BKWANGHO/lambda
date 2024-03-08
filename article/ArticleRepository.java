@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleRepository {
-    Connection connection;
+    private Connection conn;
 
-    private static ArticleRepository instance;
+    private final static ArticleRepository instance;
 
     static {
         try {
@@ -16,9 +16,8 @@ public class ArticleRepository {
             throw new RuntimeException(e);
         }
     }
-
     private ArticleRepository() throws SQLException {
-        this.connection = DriverManager.getConnection(
+        this.conn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/turingdb",
                 "turing", "password");
     }
@@ -26,28 +25,21 @@ public class ArticleRepository {
         return instance;
     }
 
-    public List<?> findArticles() throws SQLException {
+    public List<?> findAll() throws SQLException {
         String sql = "select * from articles";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
-        List<Article> list = new ArrayList<>();
+
+        List<Article> ls = new ArrayList<>();
         if(rs.next()) {
             do {
-                list.add(Article.builder()
+                ls.add(Article.builder()
                                 .id(rs.getLong("id"))
                                 .title(rs.getString("Title"))
                                 .content(rs.getString("content"))
                                 .writer(rs.getString("Writer"))
+                                .registerDate(rs.getString("register_date"))
                                 .build());
-
-
-//
-////                System.out.printf(
-//                        list.add("ID: %d\t Title : %s\t content: %s\t Writer: %s\n",
-//                        rs.getInt("id"),
-//                        rs.getString("Title"),
-//                        rs.getString("content"),
-//                        rs.getString("Writer")));
 
             } while (rs.next());
         }else {
@@ -55,8 +47,8 @@ public class ArticleRepository {
         }
         rs.close();;
         pstmt.close();
-        connection.close();
+        conn.close();
 
-        return list;
+        return ls;
     }
 }

@@ -5,7 +5,6 @@ import enums.Messenger;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -16,16 +15,13 @@ public class UserController {
         this.service = UserServiceImpl.getInstance();
     }
 
-    public Messenger join(Scanner sc) {
+    public Messenger join(Scanner sc) throws SQLException {
 
         return service.save(User.builder()
                 .username(sc.next())
                 .password(sc.next())
-                .confirmPassword(sc.next())
                 .name(sc.next())
-                .personId(sc.nextInt())
-                .phoneNumber(sc.nextInt())
-                .address(sc.next())
+                .phone(sc.next())
                 .job(sc.next())
                 .height(sc.nextInt())
                 .weight(sc.nextInt())
@@ -55,7 +51,6 @@ public class UserController {
         return service.updatePassword(User.builder()
                 .username(sc.next())
                 .password(sc.next())
-                .confirmPassword(sc.next())
                 .build()
         );
     }
@@ -104,5 +99,13 @@ public class UserController {
     public User getUser(Scanner sc) {
 
         return service.getUser(sc.next());
+    }
+
+    public String touchTable() throws SQLException {
+        return service.touchTable();
+    }
+
+    public String removeTable() throws SQLException {
+        return service.removeTable();
     }
 }

@@ -10,18 +10,16 @@ public class ArticleView {
 
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +
-                    "1-글 목록\n" + //o
+                    "ls-글 목록\n" + //o
                     "2-로그인\n " + //o
                     "9-회원수");   // 0
             switch (sc.next()) {
                 case "0":
                     System.out.println("종료");
                     return;
-                case "1":
+                case "ls":
                     System.out.println("=== 글 목록  ===");
-
-                    List<?> list = controller.findArticles(sc);
-                    list.forEach(i-> System.out.println(i));
+                    controller.findAll(sc).forEach(System.out::println);
 
                     break;
                 case "2":

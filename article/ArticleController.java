@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ArticleController {
-    ArticleService service;
+    private ArticleService service;
 
     public ArticleController() {
     this.service = ArticleServiceImpl.getInstance();
     }
 
-    public List<?> findArticles(Scanner sc) throws SQLException {
-        return service.findArticles();
+    public List<?> findAll(Scanner sc) throws SQLException {
+        return service.findAll();
     }
 }

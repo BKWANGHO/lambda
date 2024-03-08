@@ -19,14 +19,14 @@ public class Main {
 
         while (true) {
             System.out.println(
-                    "0-종료  1-사용자관리  2-게시판 3-통장관리 4-Crawler 5-Article");
+                    "x-Exit u-user a-Article ac-Account c-Crawler ");
             switch (sc.next()) {
-                case "0": return ;
-                case "1": UserView.main(sc);  break;
-                case "2": BoardView.main(); break;
-                case "3": AccountView.main(sc); break;
-                case "4": CrawlerView.main(sc); break;
-                case "5": ArticleView.main(sc); break;
+                case "x": return ;
+                case "u": UserView.main(sc);  break;
+                case "a": ArticleView.main(sc); break;
+                case "ac": AccountView.main(sc); break;
+                case "c": CrawlerView.main(sc); break;
+                case "b": BoardView.main(); break;
             }
         }
 

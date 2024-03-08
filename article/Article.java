@@ -1,5 +1,8 @@
 package article;
 import lombok.*;
+
+import java.util.Date;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString(exclude = {"id"})
@@ -8,12 +11,14 @@ public class Article {
     private String title;
     private String content;
     private String writer;
+    private String registerDate;
 
     @Builder(builderMethodName = "builder")
-    public Article(Long id, String title, String content, String writer) {
+    public Article(Long id, String title, String content, String writer,String registerDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.writer = writer;
+        this.registerDate = registerDate;
     }
 }

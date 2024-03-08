@@ -2,8 +2,6 @@ package user;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
 public interface UserService {
 
@@ -24,5 +22,8 @@ public interface UserService {
     List<?> findUsers() throws SQLException;
 
     User getUser(String id);
+    public String touchTable() throws SQLException;
+
+    String removeTable() throws SQLException;
 }
 

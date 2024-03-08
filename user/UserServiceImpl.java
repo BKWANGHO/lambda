@@ -28,10 +28,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Messenger save(User user) {
+    public Messenger save(User user) throws SQLException {
 
         users.put(user.getUsername(), user);
-        return Messenger.SUCCESS;
+        return repository.saveUsers(user);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public String updatePassword(User user) {
-        users.get(user.getUsername()).setPassword(user.getConfirmPassword());
+        users.get(user.getUsername()).setPassword(user.getPassword());
 //        users.get(user.getUsername()).setPassword(user.getPassword());
         return users.getOrDefault(user.getUsername(), User.builder().password("").build())
                 .getPassword().isEmpty() ? "변경실패" : "변경완료";
@@ -145,4 +145,12 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return "5명 추가";
     }
 
+    public String touchTable() throws SQLException {
+        return repository.touchTable();
+    }
+
+    @Override
+    public String removeTable() throws SQLException {
+        return repository.removeTable();
+    }
 }

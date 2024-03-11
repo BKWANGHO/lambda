@@ -1,8 +1,10 @@
-import account.AccountView;
-import article.ArticleView;
-import board.BoardView;
-import user.UserView;
-import crawler.CrawlerView;
+package com.turing.api;
+
+import com.turing.api.account.AccountView;
+import com.turing.api.article.ArticleView;
+import com.turing.api.board.BoardView;
+import com.turing.api.user.UserView;
+import com.turing.api.crawler.CrawlerView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,7 +21,7 @@ public class Main {
 
         while (true) {
             System.out.println(
-                    "x-Exit u-user a-Article ac-Account c-Crawler ");
+                    "x-Exit u-com.turing.api.user a-Article ac-Account c-Crawler ");
             switch (sc.next()) {
                 case "x": return ;
                 case "u": UserView.main(sc);  break;

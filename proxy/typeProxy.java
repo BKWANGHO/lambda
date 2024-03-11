@@ -1,4 +1,4 @@
-package proxy;
+package com.turing.api.proxy;
 
 import java.util.Objects;
 import java.util.function.Function;

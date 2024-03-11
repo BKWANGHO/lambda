@@ -1,4 +1,4 @@
-package common;
+package com.turing.api.common;
 
 public class UtilServiceImpl implements UtilService {
 

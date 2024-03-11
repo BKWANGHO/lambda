@@ -1,7 +1,5 @@
-package article;
+package com.turing.api.article;
 import lombok.*;
-
-import java.util.Date;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter

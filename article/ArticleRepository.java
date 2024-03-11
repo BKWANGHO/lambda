@@ -1,4 +1,4 @@
-package article;
+package com.turing.api.article;
 
 import java.sql.*;
 import java.util.ArrayList;

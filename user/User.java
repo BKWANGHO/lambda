@@ -1,4 +1,4 @@
-package user;
+package com.turing.api.user;
 import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

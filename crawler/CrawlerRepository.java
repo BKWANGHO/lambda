@@ -1,7 +1,6 @@
-package crawler;
+package com.turing.api.crawler;
 
-import common.AbstractRepository;
-import lombok.Value;
+import com.turing.api.common.AbstractRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,10 +8,8 @@ import org.jsoup.select.Elements;
 
 
 import java.io.IOException;
-import java.security.Key;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class CrawlerRepository extends AbstractRepository {

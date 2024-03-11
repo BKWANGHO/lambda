@@ -1,7 +1,6 @@
-package article;
+package com.turing.api.article;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
 
 public class ArticleView {

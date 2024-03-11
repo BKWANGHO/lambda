@@ -1,4 +1,4 @@
-package crawler;
+package com.turing.api.crawler;
 
 
 import org.jsoup.nodes.Element;

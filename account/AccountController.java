@@ -1,7 +1,7 @@
-package account;
+package com.turing.api.account;
 
 
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
 import java.time.LocalDateTime;
 import java.util.List;

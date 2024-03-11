@@ -1,7 +1,6 @@
-package common;
+package com.turing.api.common;
 
-import account.Account;
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
 import java.sql.SQLException;
 import java.util.List;

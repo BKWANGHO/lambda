@@ -1,8 +1,8 @@
-package account;
+package com.turing.api.account;
 
 
-import common.AbstractService;
-import enums.Messenger;
+import com.turing.api.common.AbstractService;
+import com.turing.api.enums.Messenger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

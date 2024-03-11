@@ -1,17 +1,17 @@
 
-package user;
+package com.turing.api.user;
 
-import article.Article;
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
 import java.sql.*;
 import java.util.*;
-import java.util.stream.Stream;
 
 public class UserRepository {
 
-    Connection connection;
-    private static UserRepository instance;
+    private Connection connection;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+    private static final UserRepository instance;
 
     static {
         try {
@@ -25,7 +25,8 @@ public class UserRepository {
         this.connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/turingdb",
                 "turing", "password");
-
+        this.pstmt = null;
+        this.rs = null;
     }
 
     public static UserRepository getInstance() {
@@ -38,9 +39,8 @@ public class UserRepository {
 
     public List<?> findUsers() throws SQLException {
         String sql = "select * from users";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet rs = pstmt.executeQuery();
-        System.out.println("연결완료");
+        pstmt = connection.prepareStatement(sql);
+        rs = pstmt.executeQuery();
         List<User> ls = new ArrayList<>();
         if (rs.next()) {
             do {
@@ -61,10 +61,6 @@ public class UserRepository {
 //        rs.next();
 //        String name = rs.getString("name");
 //        System.out.println(name);
-        rs.close();
-        pstmt.close();
-
-
         return ls;
     }
 
@@ -83,29 +79,22 @@ public class UserRepository {
                 "    height VARCHAR(20),\n" +
                 "    weight VARCHAR(20)\n" +
                 ");";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        int ex = pstmt.executeUpdate();
-        System.out.println("ex : "+ex);
-
-        pstmt.close();
-        return (ex==0) ? "SUCESS" : "FAIL" ;
+        pstmt = connection.prepareStatement(sql);
+        return (pstmt.executeUpdate() == 0) ? "SUCESS" : "FAIL";
     }
 
     public String removeTable() throws SQLException {
         String sql = "DROP TABLE IF EXISTS Users;";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        connection.prepareStatement(sql);
+        pstmt = connection.prepareStatement(sql);
         pstmt.executeUpdate();
-
-        pstmt.close();
         return "회원테이블 삭제 성공";
     }
 
     public Messenger saveUsers(User user) throws SQLException {
-        String sql = "insert into users(username, password, name"+
-        ", phone, job, height,weight)" +
+        String sql = "insert into users(username, password, name" +
+                ", phone, job, height,weight)" +
                 "values (?,?,?,?,?,?,?)";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt = connection.prepareStatement(sql);
 
         pstmt.setString(1, user.getUsername());
         pstmt.setString(2, user.getPassword());
@@ -116,7 +105,6 @@ public class UserRepository {
         pstmt.setDouble(7, user.getWeight());
 
         pstmt.executeUpdate();
-        pstmt.close();
         return Messenger.SUCCESS;
     }
 

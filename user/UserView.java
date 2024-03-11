@@ -1,7 +1,6 @@
-package user;
+package com.turing.api.user;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserView {

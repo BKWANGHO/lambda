@@ -1,4 +1,4 @@
-package account;
+package com.turing.api.account;
 
 import lombok.*;
 

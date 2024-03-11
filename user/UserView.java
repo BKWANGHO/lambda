@@ -88,7 +88,7 @@ public class UserView {
                     break;
 
                 case "rm":
-                    System.out.println("=== 테이블 생성  ===");
+                    System.out.println("=== 테이블 삭제  ===");
                     System.out.println(ctrl.removeTable());
                     break;
             }

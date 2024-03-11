@@ -22,7 +22,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         this.repository = UserRepository.getInstance();
         this.users = new HashMap<>();
     }
-
     public static UserServiceImpl getInstance() {
         return instance;
     }
@@ -145,7 +144,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return "5명 추가";
     }
 
-    public String touchTable() throws SQLException {
+    public Messenger touchTable() throws SQLException {
         return repository.touchTable();
     }
 

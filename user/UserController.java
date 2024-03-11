@@ -101,7 +101,7 @@ public class UserController {
         return service.getUser(sc.next());
     }
 
-    public String touchTable() throws SQLException {
+    public Messenger touchTable() throws SQLException {
         return service.touchTable();
     }
 

@@ -63,14 +63,12 @@ public class UserRepository {
 //        System.out.println(name);
         rs.close();
         pstmt.close();
-//        connection.close();
 
 
         return ls;
     }
 
     public User getuser(String id) {
-//        User user =
         return null;
     }
 
@@ -86,10 +84,11 @@ public class UserRepository {
                 "    weight VARCHAR(20)\n" +
                 ");";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        pstmt.executeUpdate();
-//        connection.close();
+        int ex = pstmt.executeUpdate();
+        System.out.println("ex : "+ex);
+
         pstmt.close();
-        return "회원테이블 생성 성공";
+        return (ex==0) ? "SUCESS" : "FAIL" ;
     }
 
     public String removeTable() throws SQLException {
@@ -98,7 +97,6 @@ public class UserRepository {
         connection.prepareStatement(sql);
         pstmt.executeUpdate();
 
-//        connection.close();
         pstmt.close();
         return "회원테이블 삭제 성공";
     }
@@ -107,12 +105,7 @@ public class UserRepository {
         String sql = "insert into users(username, password, name"+
         ", phone, job, height,weight)" +
                 "values (?,?,?,?,?,?,?)";
-//        String sql = "insert into users(username, password, name" +
-//                ", phone, job, height, weight) " +
-//                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-
-//        Stream.of(user).flatMap()
 
         pstmt.setString(1, user.getUsername());
         pstmt.setString(2, user.getPassword());
@@ -123,8 +116,9 @@ public class UserRepository {
         pstmt.setDouble(7, user.getWeight());
 
         pstmt.executeUpdate();
-//        connection.close();
         pstmt.close();
         return Messenger.SUCCESS;
     }
+
+
 }

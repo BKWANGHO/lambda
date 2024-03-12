@@ -3,6 +3,7 @@ package com.turing.api;
 import com.turing.api.account.AccountView;
 import com.turing.api.article.ArticleView;
 import com.turing.api.board.BoardView;
+import com.turing.api.enums.Navigation;
 import com.turing.api.user.UserView;
 import com.turing.api.crawler.CrawlerView;
 
@@ -17,11 +18,9 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-
-
-        while (true) {
+        while (Navigation.getMain(sc.next())) {
             System.out.println(
-                    "x-Exit u-com.turing.api.user a-Article ac-Account c-Crawler ");
+                    "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
             switch (sc.next()) {
                 case "x": return ;
                 case "u": UserView.main(sc);  break;
@@ -31,6 +30,21 @@ public class Main {
                 case "b": BoardView.main(); break;
             }
         }
+
+
+
+//        while (true) {
+//            System.out.println(
+//                    "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
+//            switch (sc.next()) {
+//                case "x": return ;
+//                case "u": UserView.main(sc);  break;
+//                case "a": ArticleView.main(sc); break;
+//                case "ac": AccountView.main(sc); break;
+//                case "c": CrawlerView.main(sc); break;
+//                case "b": BoardView.main(); break;
+//            }
+//        }
 
 
     }

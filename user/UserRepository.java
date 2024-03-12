@@ -68,7 +68,7 @@ public class UserRepository {
         return null;
     }
 
-    public String touchTable() throws SQLException {
+    public Messenger touchTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS users (\n" +
                 "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "    username VARCHAR(20) NOT NULL UNIQUE,\n" +
@@ -80,7 +80,8 @@ public class UserRepository {
                 "    weight VARCHAR(20)\n" +
                 ");";
         pstmt = connection.prepareStatement(sql);
-        return (pstmt.executeUpdate() == 0) ? "SUCESS" : "FAIL";
+
+        return (pstmt.executeUpdate() == 0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
     public String removeTable() throws SQLException {

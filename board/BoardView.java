@@ -6,6 +6,7 @@ import com.turing.api.common.UtilServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BoardView {
     public static void main() {

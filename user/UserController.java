@@ -105,7 +105,7 @@ public class UserController {
         return service.touchTable();
     }
 
-    public String removeTable() throws SQLException {
+    public Messenger removeTable() throws SQLException {
         return service.removeTable();
     }
 }

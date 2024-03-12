@@ -16,5 +16,5 @@ public interface UserService {
     List<?> findUsers() throws SQLException;
     User getUser(String id);
     Messenger touchTable() throws SQLException;
-    String removeTable() throws SQLException;
+    Messenger removeTable() throws SQLException;
 }

@@ -53,7 +53,10 @@ public enum Navigation {
         BoardView.main();
         return true;
     }),
-    ;
+    NAVIGATION_ERROR("er",(sc)-> {
+        System.out.println("에러입니다.");
+        return true;
+    });
 
     private final String menu;
     private final Predicate<Scanner> predicate;
@@ -64,14 +67,16 @@ public enum Navigation {
         this.predicate = predicate;
 
     }
-    public static Navigation selectmain(String selct){
+    public static boolean selectmain(Scanner sc){
+        System.out.println(
+                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
+        String msg = sc.next();
         return Stream.of(Navigation.values())
-                .filter(i->i.menu.equals(selct))
-                .findAny().orElseThrow(()-> new IllegalArgumentException("다시"));
+                .filter(i->i.menu.equals(msg))
+                .findAny().orElse(NAVIGATION_ERROR)
+                .predicate.test(sc);
     }
 
-    public static boolean getMain(String select){
-        return selectmain(select);
-    }
+
 
 }

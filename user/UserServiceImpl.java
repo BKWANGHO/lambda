@@ -27,7 +27,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public Messenger save(User user) throws SQLException {
 
-        users.put(user.getUsername(), user);
         return repository.saveUsers(user);
     }
 
@@ -147,7 +146,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public String removeTable() throws SQLException {
+    public Messenger removeTable() throws SQLException {
         return repository.removeTable();
     }
 }

@@ -81,14 +81,14 @@ public class UserRepository {
                 ");";
         pstmt = connection.prepareStatement(sql);
 
-        return (pstmt.executeUpdate() == 0) ? Messenger.SUCCESS : Messenger.FAIL;
+        return (pstmt.executeUpdate() >= 0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
-    public String removeTable() throws SQLException {
+    public Messenger removeTable() throws SQLException {
         String sql = "DROP TABLE IF EXISTS Users;";
         pstmt = connection.prepareStatement(sql);
         pstmt.executeUpdate();
-        return "회원테이블 삭제 성공";
+        return (pstmt.executeUpdate() >=0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
     public Messenger saveUsers(User user) throws SQLException {
@@ -106,7 +106,7 @@ public class UserRepository {
         pstmt.setDouble(7, user.getWeight());
 
         pstmt.executeUpdate();
-        return Messenger.SUCCESS;
+        return (pstmt.executeUpdate() >=0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
 

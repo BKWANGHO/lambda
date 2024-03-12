@@ -4,15 +4,21 @@ package com.turing.api.user;
 import com.turing.api.enums.Messenger;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class UserController {
-    UserServiceImpl service;
 
-    public UserController() {
+    UserServiceImpl service;
+    private static UserController instance = new UserController();
+
+    private UserController() {
         this.service = UserServiceImpl.getInstance();
+    }
+    public static UserController getInstance() {
+        return instance;
     }
 
     public Messenger join(Scanner sc) throws SQLException {

@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class UserView {
     public static void main(Scanner sc) throws SQLException {
-        UserController ctrl =new UserController();
+        UserController ctrl =UserController.getInstance();
         ctrl.addUsers();
 
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +
-                    "1-회원가입\n" + //o
-                    "2-로그인\n " + //o
+                    "join-회원가입\n" + //o
+                    "login-로그인\n " + //o
                     "3-ID검색\n " +
                     "4-비번변경\n " + // 0
                     "5-탈퇴\n " +  //0

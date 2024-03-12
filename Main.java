@@ -17,7 +17,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (Navigation.selectmain(sc)) {
-
             }
         }
 

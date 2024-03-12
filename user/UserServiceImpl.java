@@ -26,7 +26,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public Messenger save(User user) throws SQLException {
-
         return repository.saveUsers(user);
     }
 
@@ -36,9 +35,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public String login(User user) {
-        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
-                .getPassword().equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
+    public Messenger login(User user) throws SQLException {
+//        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
+//                .getPassword().equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
+        return repository.login(user);
     }
 
 

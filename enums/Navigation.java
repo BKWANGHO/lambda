@@ -23,11 +23,20 @@ public enum Navigation {
         return false;
     }),
     USER ("u", (sc)-> {
-        try {
-            UserView.main(sc);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        //            UserView.main(sc);
+        System.out.println("[메뉴] 0-종료\n " +
+                "join-회원가입\n" + //o
+                "login-로그인\n " + //o
+                "3-ID검색\n " +
+                "4-비번변경\n " + // 0
+                "5-탈퇴\n " +  //0
+                "ls-회원목록\n " + //0
+                "7-이름검색\n" +
+                "8-직업검색\n" +
+                "9-회원수\n" +
+                "touch-테이블 생성\n" +
+                "rm-테이블 삭제");   // 0
+        UserRouter.getview(sc);
         return true;
     }),
     ARTICLE ("a", (sc)-> {

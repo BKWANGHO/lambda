@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    String login(User user);
+    Messenger login(User user) throws SQLException;
     String addUsers();
     String updatePassword(User user);
     List<?> findUserByName(String name);

@@ -104,10 +104,17 @@ public class UserRepository {
         pstmt.setString(5, user.getJob());
         pstmt.setDouble(6, user.getHeight());
         pstmt.setDouble(7, user.getWeight());
-
-        pstmt.executeUpdate();
         return (pstmt.executeUpdate() >=0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
+    public Messenger login(User user) throws SQLException {
+        String sql = "SELECT username,password FROM users WHERE username = ?";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1,user.getUsername());
+        rs = pstmt.executeQuery();
 
-
+        return rs.next() ?
+                rs.getString("password").equals(user.getPassword()) ?
+                        Messenger.SUCCESS : Messenger.FAIL
+                        : Messenger.FAIL;
+    }
 }

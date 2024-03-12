@@ -34,7 +34,7 @@ public class UserController {
                 .build());
     }
 
-    public String login(Scanner sc) {
+    public Messenger login(Scanner sc) throws SQLException {
         return service.login(User.builder()
                 .username(sc.next())
                 .password(sc.next())

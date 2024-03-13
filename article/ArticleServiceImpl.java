@@ -47,7 +47,7 @@ public class ArticleServiceImpl extends AbstractService implements ArticleServic
     }
 
     @Override
-    public String delete(Object o) {
+    public Messenger delete(Object o) {
         return null;
     }
 

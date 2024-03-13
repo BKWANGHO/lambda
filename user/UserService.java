@@ -9,7 +9,7 @@ public interface UserService {
 
     Messenger login(User user) throws SQLException;
     String addUsers();
-    String updatePassword(User user);
+    Messenger updatePassword(User user);
     List<?> findUserByName(String name);
     List<?> findUserByJob(String job);
     String test();

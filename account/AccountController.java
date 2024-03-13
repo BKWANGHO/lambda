@@ -54,7 +54,7 @@ public class AccountController {
         return accountService.getBalance(sc.next());
     }
 
-    public String removeAccount(Scanner sc) {
+    public Messenger removeAccount(Scanner sc) {
         System.out.println("삭제할 계좌번호을 입력하세요");
 
         return accountService.delete(Account.builder()

@@ -54,19 +54,17 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
 
     @Override
-    public String updatePassword(User user) {
+    public Messenger updatePassword(User user) {
         users.get(user.getUsername()).setPassword(user.getPassword());
 //        users.get(com.turing.api.user.getUsername()).setPassword(com.turing.api.user.getPassword());
         return users.getOrDefault(user.getUsername(), User.builder().password("").build())
-                .getPassword().isEmpty() ? "변경실패" : "변경완료";
-
-
+                .getPassword().isEmpty() ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
     @Override
-    public String delete(User user) {
+    public Messenger delete(User user) {
         users.remove(user.getUsername());
-        return "삭제완료";
+        return users.get(user.getUsername()).equals("")? Messenger.SUCCESS:Messenger.FAIL;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class UserController {
     }
 
 
-    public String updatePassword(Scanner sc) {
+    public Messenger updatePassword(Scanner sc) {
 
 
         return service.updatePassword(User.builder()
@@ -60,7 +60,7 @@ public class UserController {
                 .build()
         );
     }
-    public String deleteUser(Scanner sc) {
+    public Messenger deleteUser(Scanner sc) {
 
         return service.delete(User.builder()
                 .username(sc.next())

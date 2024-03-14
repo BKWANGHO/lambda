@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AccountView {
     public static void main(Scanner sc) {
-        AccountController accountController = new AccountController();
+        AccountController accountController = AccountController.getInstance();
 
         while (true) {
             System.out.println("[Account] 0-Exit\n " +

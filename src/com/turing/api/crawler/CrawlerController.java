@@ -6,9 +6,15 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CrawlerController {
+
+    private static CrawlerController instance = new CrawlerController();
     private CrawlerServiceImpl service;
-    public CrawlerController() {
+    private CrawlerController() {
         this.service = CrawlerServiceImpl.getInstance();
+    }
+
+    public static CrawlerController getInstance() {
+        return instance;
     }
 
     public Map<String,?> findBugsMusic(Scanner sc) throws IOException {

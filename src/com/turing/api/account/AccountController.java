@@ -10,9 +10,16 @@ import java.util.Scanner;
 public class AccountController {
 
     AccountServiceImpl accountService;
-    public AccountController() {
+    private static AccountController instance = new AccountController();
+
+    private AccountController() {
         this.accountService = AccountServiceImpl.getInstance();
     }
+
+    public static AccountController getInstance() {
+        return instance;
+    }
+
 
     public Messenger createAccount(Scanner sc) {
         System.out.println("개설할 계좌번호를 입력하세요");

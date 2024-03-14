@@ -76,5 +76,6 @@ public enum UserRouter {
 
             running = !result.equals(Messenger.EXIT);
         }
+
     }
 }

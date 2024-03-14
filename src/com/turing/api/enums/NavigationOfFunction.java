@@ -58,7 +58,7 @@ public enum NavigationOfFunction {
         this.function = function;
     }
 
-    public static String selctMain(Scanner sc) {
+    public static String selectMain(Scanner sc) {
         System.out.println(
                 "x-exit u-user a-Article ac-Account c-Crawler b-Board");
         String msg = sc.next();

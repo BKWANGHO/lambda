@@ -17,6 +17,7 @@ public class UserController {
     private UserController() {
         this.service = UserServiceImpl.getInstance();
     }
+
     public static UserController getInstance() {
         return instance;
     }

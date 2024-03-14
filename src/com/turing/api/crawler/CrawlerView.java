@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class CrawlerView {
     public static void main(Scanner sc) throws IOException {
-        CrawlerController ctrl =new CrawlerController();
+        CrawlerController ctrl =CrawlerController.getInstance();
 
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +

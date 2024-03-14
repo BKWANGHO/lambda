@@ -30,15 +30,13 @@ public enum NavigationOfPredicate {
         return true;
     }),
     ACCOUNT ("ac", (sc)-> {
-        AccountView.main(sc);
+//        AccountView.main(sc);
+        while (AccountRouter.getview(sc));
         return true;
     }),
     CRAWLER ("c", (sc)-> {
-        try {
-            CrawlerView.main(sc);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        //            CrawlerView.main(sc);
+        CrawlerRouter.getview(sc);
         return true;}),
     BOARD ("b", (sc)->{
         BoardView.main();

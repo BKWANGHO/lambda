@@ -14,8 +14,6 @@ public class AccountServiceImpl extends AbstractService<Account> implements Acco
     List<Account> bankingHistory;
     String result = "";
 
-
-
     private static AccountServiceImpl instance = new AccountServiceImpl();
 
     private AccountServiceImpl() {
@@ -83,7 +81,8 @@ public class AccountServiceImpl extends AbstractService<Account> implements Acco
 
     @Override
     public Messenger save(Account account) {
-        return null;
+        accountList.add(account);
+        return Messenger.SUCCESS;
     }
 
     @Override

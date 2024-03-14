@@ -58,11 +58,9 @@ public enum Navigation {
     private final String menu;
     private final Predicate<Scanner> predicate;
 
-
     Navigation(String menu,Predicate<Scanner> predicate) {
         this.menu = menu;
         this.predicate = predicate;
-
     }
     public static boolean selectmain(Scanner sc){
         System.out.println(
@@ -73,7 +71,4 @@ public enum Navigation {
                 .findAny().orElse(NAVIGATION_ERROR)
                 .predicate.test(sc);
     }
-
-
-
 }

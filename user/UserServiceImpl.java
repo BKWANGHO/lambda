@@ -1,6 +1,4 @@
 package com.turing.api.user;
-
-
 import com.turing.api.common.AbstractService;
 import com.turing.api.common.UtilServiceImpl;
 import com.turing.api.enums.Messenger;
@@ -9,7 +7,6 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     Map<String, User> users;

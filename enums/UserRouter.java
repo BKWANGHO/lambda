@@ -73,7 +73,8 @@ public enum UserRouter {
                      .findAny().orElse(RE)
                      .function.apply(sc);
             System.out.println(result);
-            running = result.equals(Messenger.SUCCESS);
+
+            running = !result.equals(Messenger.EXIT);
         }
     }
 }

@@ -1,11 +1,7 @@
 package com.turing.api.enums;
 
-import com.turing.api.account.AccountView;
-import com.turing.api.article.ArticleView;
-import com.turing.api.board.BoardView;
-import com.turing.api.crawler.CrawlerView;
+import menu.MenuController;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.function.Predicate;
@@ -52,9 +48,10 @@ public enum NavigationOfPredicate {
         this.menu = menu;
         this.predicate = predicate;
     }
-    public static boolean selectMain(Scanner sc){
-        System.out.println(
-                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
+    public static boolean selectMain(Scanner sc) throws SQLException {
+        System.out.println(MenuController.getInstance().printMain());
+//        System.out.println(
+//                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
         String msg = sc.next();
         return Stream.of(NavigationOfPredicate.values())
                 .filter(i->i.menu.equals(msg))

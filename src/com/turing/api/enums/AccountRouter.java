@@ -1,7 +1,9 @@
 package com.turing.api.enums;
 
 import com.turing.api.account.AccountController;
+import menu.MenuController;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -49,15 +51,9 @@ public enum AccountRouter {
         this.predicate = predicate;
     }
 
-    public static boolean getview(Scanner sc) {
-        System.out.println("[Account] exit-종료\n " +
-                "creat-계좌생성\n" +
-                "deposit-입금\n " +
-                "withdraw-출금\n " +
-                "getBalance-거래내역\n " +
-                "removeAccount-계좌삭제\n "+
-                "accountList-계좌목록\n "
-        );
+    public static boolean getview(Scanner sc) throws SQLException {
+        System.out.println(MenuController.getInstance().printAccount());
+
         String msg = sc.next();
         return Stream.of(values())
                 .filter(i->i.name.equals(msg))

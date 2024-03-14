@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 public class MenuRepository {
     private static MenuRepository instance;
 
-    static {
+    {
         try {
             instance = new MenuRepository();
         } catch (SQLException e) {
@@ -29,21 +29,21 @@ public class MenuRepository {
         return instance;
     }
 
+    public String printMain(Menu menu) throws SQLException {
+        String sql = "select *, category from " + menu.getCategory();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        String categorym="";
+        if (rs.next()) {
+            do {
 
-
-
-
-    public String printMain() throws SQLException {
-        String sql = "SELECT item\n" +
-                "from menus \n" +
-                "WHERE category = 'main';";
-        pstmt = conn.prepareStatement(sql);
-        rs = pstmt.executeQuery();
-        String print ="";
-         while (rs.next()) {
-             int i =1;
-            print += (rs.getString(i)+"\t");
+                categorym+=rs.getString("item")+"\t";
+            } while (rs.next());
+        } else {
+            System.out.println("데이터 없음");
         }
-        return print;
+        pstmt.close();
+        return categorym;
     }
 }
+

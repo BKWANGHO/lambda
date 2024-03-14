@@ -16,7 +16,11 @@ public enum NavigationOfConsumer {
     }),
     USER ("u", (sc)-> {
         //            UserView.main(sc);
-        UserRouter.getview(sc);
+        try {
+            UserRouter.getview(sc);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 //        return "user";
     }),
     ARTICLE ("a", (sc)-> {

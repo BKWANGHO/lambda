@@ -15,7 +15,8 @@ public class MenuServiceImpl implements MenuService {
 
 
     @Override
-    public String printMain() throws SQLException {
-        return repository.printMain();
+    public String printMain(Menu menu) throws SQLException {
+        return repository.printMain(menu);
     }
+
 }

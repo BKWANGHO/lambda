@@ -1,6 +1,7 @@
 package com.turing.api.enums;
 
 import com.turing.api.user.UserController;
+import menu.MenuController;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -52,21 +53,22 @@ public enum UserRouter {
         this.function = function;
     }
 
-    public static void getview(Scanner sc){
+    public static void getview(Scanner sc) throws SQLException {
         boolean running = true;
         while (running) {
-            System.out.println("[메뉴] exit-종료\n " +
-                    "join-회원가입\n" +
-                    "login-로그인\n " +
-                    "findID-ID검색\n " +
-                    "updatepw-비번변경\n " +
-                    "delete-탈퇴\n " +
-                    "userls-회원목록\n " +
-                    "findname-이름검색\n" +
-                    "findjob-직업검색\n" +
-                    "usercount-회원수\n" +
-                    "touch-테이블 생성\n" +
-                    "rm-테이블 삭제");
+            System.out.println(MenuController.getInstance().printUser());
+//            System.out.println("[메뉴] exit-종료\n " +
+//                    "join-회원가입\n" +
+//                    "login-로그인\n " +
+//                    "findID-ID검색\n " +
+//                    "updatepw-비번변경\n " +
+//                    "delete-탈퇴\n " +
+//                    "userls-회원목록\n " +
+//                    "findname-이름검색\n" +
+//                    "findjob-직업검색\n" +
+//                    "usercount-회원수\n" +
+//                    "touch-테이블 생성\n" +
+//                    "rm-테이블 삭제");
             String msg = sc.next();
              Messenger result = Stream.of(UserRouter.values())
                      .filter(i -> i.menu.equals(msg))

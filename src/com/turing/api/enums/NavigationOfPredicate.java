@@ -14,7 +14,11 @@ public enum NavigationOfPredicate {
     }),
     USER ("u", (sc)-> {
         //            UserView.main(sc);
-        UserRouter.getview(sc);
+        try {
+            UserRouter.getview(sc);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }),
     ARTICLE ("a", (sc)-> {
@@ -25,7 +29,14 @@ public enum NavigationOfPredicate {
     }),
     ACCOUNT ("ac", (sc)-> {
 //        AccountView.main(sc);
-        while (AccountRouter.getview(sc));
+        while (true) {
+            try {
+                if (!AccountRouter.getview(sc)) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            ;
+        }
         return true;
     }),
     CRAWLER ("c", (sc)-> {
@@ -49,7 +60,7 @@ public enum NavigationOfPredicate {
         this.predicate = predicate;
     }
     public static boolean selectMain(Scanner sc) throws SQLException {
-        System.out.println(MenuController.getInstance().printMain());
+        System.out.println(MenuController.getInstance().printMain(sc));
 //        System.out.println(
 //                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
         String msg = sc.next();

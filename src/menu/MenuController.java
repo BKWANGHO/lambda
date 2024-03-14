@@ -1,6 +1,7 @@
 package menu;
 
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class MenuController {
 
@@ -15,7 +16,12 @@ public class MenuController {
     }
 
 
-    public String printMain() throws SQLException {
-        return service.printMain();
+    public String printMain(Scanner sc) throws SQLException {
+        return service.printMain(new Menu.MenuBuilder()
+                .category(sc.next())
+                .build());
+
     }
+
+
 }

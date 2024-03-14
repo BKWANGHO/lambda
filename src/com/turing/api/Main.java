@@ -18,9 +18,8 @@ public class Main {
 
         while (Navigation.selectmain(sc)) {
 
-            }
+
+
         }
-
-
-
     }
+}

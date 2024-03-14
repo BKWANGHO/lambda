@@ -1,11 +1,9 @@
 package com.turing.api;
 
-import com.turing.api.account.AccountView;
-import com.turing.api.article.ArticleView;
-import com.turing.api.board.BoardView;
-import com.turing.api.enums.Navigation;
-import com.turing.api.user.UserView;
-import com.turing.api.crawler.CrawlerView;
+import com.turing.api.enums.NavigationOfConsumer;
+import com.turing.api.enums.NavigationOfFunction;
+import com.turing.api.enums.NavigationOfPredicate;
+import com.turing.api.enums.NavigationOfSupplier;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,10 +14,17 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        while (Navigation.selectmain(sc)) {
-
-
+        while (!NavigationOfFunction.selctMain(sc).equals("exit")) {
 
         }
+//        while(!NavigationOfConsumer.selctMain(sc).equals("exit")){
+//
+//        }
+//        while(!NavigationOfSupplier.selctMain(sc).equals("exit")){
+//
+//        }
+//        while (NavigationOfPredicate.selectMain(sc)) {
+//
+//        }
     }
 }

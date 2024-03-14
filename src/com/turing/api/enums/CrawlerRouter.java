@@ -62,8 +62,6 @@ public enum CrawlerRouter {
     })
     ;
     ;
-
-
     private final String name;
     private final Predicate<Scanner> predicate;
 

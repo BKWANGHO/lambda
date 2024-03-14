@@ -33,9 +33,6 @@ public class UserRepository {
         return instance;
     }
 
-    public String test() {
-        return "UserRepository 연결";
-    }
 
     public List<?> findUsers() throws SQLException {
         String sql = "select * from users";
@@ -117,5 +114,6 @@ public class UserRepository {
                         Messenger.SUCCESS : Messenger.FAIL
                         : Messenger.FAIL;
     }
+
 }
 

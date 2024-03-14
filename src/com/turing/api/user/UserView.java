@@ -44,41 +44,41 @@ public class UserView {
                     System.out.println("=== ID검색 ===");
                     System.out.println("아이디를 입력하세요");
 //                    System.out.println(ctrl.getOne(sc));
-                    System.out.println(ctrl.getUser(sc));
+                    System.out.println(ctrl.getUser(sc)); // db 연동 및 리턴타입 변경
                     break;
 
                 case "4":
                     System.out.println("아이디를 입력하세요");
                     System.out.println("변경할 비밀번호 입력하세요");
                     System.out.println("한번더 입력하세요");
-                    System.out.println(ctrl.updatePassword(sc));
+                    System.out.println(ctrl.updatePassword(sc)); // db연동
                     break;
 
                 case "5":
                     System.out.println("탈퇴할 아이디를 입력하세요");
-                    System.out.println(ctrl.deleteUser(sc));
+                    System.out.println(ctrl.deleteUser(sc)); // db 연동
                     break;
 
                 case "ls":
                     System.out.println("=== 회원목록 ===");
-                    ctrl.findUsers().forEach(System.out::println);
+                    ctrl.findUsers().forEach(System.out::println); // 리턴타입
                     break;
 
                 case "7":
                     System.out.println("=== 이름으로검색 ===");
                     System.out.println("이름을 입력하세요");
-                    System.out.println(ctrl.findUserByName(sc));
+                    System.out.println(ctrl.findUserByName(sc)); // db 연동
                     break;
 
                 case "8":
                     System.out.println("=== 직업검색 ===");
                     System.out.println("직업을 입력하세요");
-                    System.out.println(ctrl.findUserByJob(sc));
+                    System.out.println(ctrl.findUserByJob(sc)); // db 연동
                     break;
 
                 case "9":
                     System.out.println("=== 회원수 ===");
-                    System.out.println(ctrl.countUser());
+                    System.out.println(ctrl.countUser()); // db 연동
                     break;
 
                 case "touch":

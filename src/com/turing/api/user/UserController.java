@@ -94,9 +94,7 @@ public class UserController {
         return service.getOne(sc.next());
     }
 
-    public String test() {
-        return service.test();
-    }
+
 
     public List<?> findUsers() throws SQLException {
 

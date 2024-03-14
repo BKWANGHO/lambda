@@ -50,13 +50,13 @@ public enum AccountRouter {
     }
 
     public static boolean getview(Scanner sc) {
-        System.out.println("[Account] 0-Exit\n " +
-                "1-Creat\n" +
-                "2-Deposit\n " +
-                "3-Withdraw\n " +
-                "4-GetBalance\n " +
-                "5-RemoveAccount\n "+
-                "6-AccountList\n "
+        System.out.println("[Account] exit-종료\n " +
+                "creat-계좌생성\n" +
+                "deposit-입금\n " +
+                "withdraw-출금\n " +
+                "getBalance-거래내역\n " +
+                "removeAccount-계좌삭제\n "+
+                "accountList-계좌목록\n "
         );
         String msg = sc.next();
         return Stream.of(values())

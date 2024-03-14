@@ -12,7 +12,6 @@ public interface UserService {
     Messenger updatePassword(User user);
     List<?> findUserByName(String name);
     List<?> findUserByJob(String job);
-    String test();
     List<?> findUsers() throws SQLException;
     User getUser(String id);
     Messenger touchTable() throws SQLException;

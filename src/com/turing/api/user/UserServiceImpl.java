@@ -88,10 +88,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                 .collect((Collectors.toList()));
     }
 
-    @Override
-    public String test() {
-        return repository.test();
-    }
 
     @Override
     public List<?> findUsers() throws SQLException {

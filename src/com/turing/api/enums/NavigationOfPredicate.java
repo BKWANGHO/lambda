@@ -22,11 +22,9 @@ public enum NavigationOfPredicate {
         return true;
     }),
     ARTICLE ("a", (sc)-> {
-        try {
-            ArticleView.main(sc);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        //            ArticleView.main(sc);
+        while(ArticleRouter.getview(sc));
+
         return true;
     }),
     ACCOUNT ("ac", (sc)-> {
@@ -36,14 +34,14 @@ public enum NavigationOfPredicate {
     }),
     CRAWLER ("c", (sc)-> {
         //            CrawlerView.main(sc);
-        CrawlerRouter.getview(sc);
+        while (CrawlerRouter.getview(sc));
         return true;}),
     BOARD ("b", (sc)->{
-        BoardView.main();
+        while (BoardRouter.getview(sc));
         return true;
     }),
     ERROR("er",(sc)-> {
-        System.out.println("에러입니다.");
+        System.out.println("다시입력하세요.");
         return true;
     });
 

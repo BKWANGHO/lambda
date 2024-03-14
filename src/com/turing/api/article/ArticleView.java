@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ArticleView {
     public static void main(Scanner sc) throws SQLException {
-        ArticleController controller = new ArticleController();
+        ArticleController controller =ArticleController.getInstance();
 
         while (true) {
             System.out.println("[메뉴] 0-종료\n " +

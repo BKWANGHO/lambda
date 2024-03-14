@@ -1,33 +1,29 @@
-package user;
+package com.turing.api.user;
+import com.turing.api.common.AbstractService;
+import com.turing.api.common.UtilServiceImpl;
+import com.turing.api.enums.Messenger;
 
-
-import common.AbstractService;
-import common.UtilService;
-import common.UtilServiceImpl;
-import enums.Messenger;
-
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     Map<String, User> users;
+    UserRepository repository;
     private static UserServiceImpl instance = new UserServiceImpl();
 
     private UserServiceImpl() {
+        this.repository = UserRepository.getInstance();
         this.users = new HashMap<>();
     }
-
     public static UserServiceImpl getInstance() {
         return instance;
     }
 
     @Override
-    public Messenger save(User user) {
-
-        users.put(user.getUsername(), user);
-        return Messenger.SUCCESS;
+    public Messenger save(User user) throws SQLException {
+        return repository.saveUsers(user);
     }
 
     @Override
@@ -36,9 +32,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public String login(User user) {
-        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
-                .getPassword().equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
+    public Messenger login(User user) throws SQLException {
+//        return users.getOrDefault(user.getUsername(), User.builder().password("").build())
+//                .getPassword().equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
+        return repository.login(user);
     }
 
 
@@ -54,19 +51,17 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
 
     @Override
-    public String updatePassword(User user) {
-        users.get(user.getUsername()).setPassword(user.getConfirmPassword());
-//        users.get(user.getUsername()).setPassword(user.getPassword());
+    public Messenger updatePassword(User user) {
+        users.get(user.getUsername()).setPassword(user.getPassword());
+//        users.get(com.turing.api.user.getUsername()).setPassword(com.turing.api.user.getPassword());
         return users.getOrDefault(user.getUsername(), User.builder().password("").build())
-                .getPassword().isEmpty() ? "변경실패" : "변경완료";
-
-
+                .getPassword().isEmpty() ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
     @Override
-    public String delete(User user) {
+    public Messenger delete(User user) {
         users.remove(user.getUsername());
-        return "삭제완료";
+        return users.get(user.getUsername()).equals("")? Messenger.SUCCESS:Messenger.FAIL;
     }
 
     @Override
@@ -93,6 +88,21 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                 .collect((Collectors.toList()));
     }
 
+    @Override
+    public String test() {
+        return repository.test();
+    }
+
+    @Override
+    public List<?> findUsers() throws SQLException {
+        return repository.findUsers();
+    }
+
+    @Override
+    public User getUser(String id) {
+        return repository.getuser(id);
+    }
+
     public Map<String, ?> findUserByJobFromMap(String job) {
         return users
                 .entrySet()
@@ -107,7 +117,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Optional<User> getOne(String id) {
+    public Optional<User> getOne(String id) throws SQLException {
         return Optional.of(users.get(id));
     }
 
@@ -124,7 +134,14 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                         .build()));
 
         return "5명 추가";
-
     }
 
+    public Messenger touchTable() throws SQLException {
+        return repository.touchTable();
+    }
+
+    @Override
+    public Messenger removeTable() throws SQLException {
+        return repository.removeTable();
+    }
 }

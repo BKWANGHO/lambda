@@ -1,4 +1,4 @@
-package common;
+package com.turing.api.common;
 
 import java.util.ArrayList;
 

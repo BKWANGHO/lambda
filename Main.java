@@ -1,19 +1,24 @@
-import account.AccountView;
-import board.BoardView;
-import user.UserView;
-import crawler.CrawlerView;
+package com.turing.api;
+
+import com.turing.api.account.AccountView;
+import com.turing.api.article.ArticleView;
+import com.turing.api.board.BoardView;
+import com.turing.api.enums.Navigation;
+import com.turing.api.user.UserView;
+import com.turing.api.crawler.CrawlerView;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
         Scanner sc = new Scanner(System.in);
 
+        while (Navigation.selectmain(sc)) {
 
+<<<<<<< HEAD
 
         while (true) {
             System.out.println(
@@ -24,9 +29,11 @@ public class Main {
                 case "2": BoardView.main(); break;
                 case "3": AccountView.main(sc); break;
                 case "4": CrawlerView.main(sc); break;
+=======
+>>>>>>> develop-1.1
             }
         }
 
 
+
     }
-}

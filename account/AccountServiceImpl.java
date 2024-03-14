@@ -1,8 +1,8 @@
-package account;
+package com.turing.api.account;
 
 
-import common.AbstractService;
-import enums.Messenger;
+import com.turing.api.common.AbstractService;
+import com.turing.api.enums.Messenger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -107,7 +107,7 @@ public class AccountServiceImpl extends AbstractService<Account> implements Acco
     }
 
     @Override
-    public String delete(Account account) {
+    public Messenger delete(Account account) {
         return null;
     }
 

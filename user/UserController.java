@@ -1,37 +1,40 @@
-package user;
+package com.turing.api.user;
 
 
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class UserController {
-    UserServiceImpl service;
 
-    public UserController() {
+    UserServiceImpl service;
+    private static UserController instance = new UserController();
+
+    private UserController() {
         this.service = UserServiceImpl.getInstance();
     }
+    public static UserController getInstance() {
+        return instance;
+    }
 
-    public Messenger join(Scanner sc) {
+    public Messenger join(Scanner sc) throws SQLException {
 
         return service.save(User.builder()
                 .username(sc.next())
                 .password(sc.next())
-                .confirmPassword(sc.next())
                 .name(sc.next())
-                .personId(sc.nextInt())
-                .phoneNumber(sc.nextInt())
-                .address(sc.next())
+                .phone(sc.next())
                 .job(sc.next())
                 .height(sc.nextInt())
                 .weight(sc.nextInt())
                 .build());
     }
 
-    public String login(Scanner sc) {
+    public Messenger login(Scanner sc) throws SQLException {
         return service.login(User.builder()
                 .username(sc.next())
                 .password(sc.next())
@@ -42,19 +45,22 @@ public class UserController {
     public Optional<User> findUserBYId(Scanner sc) {
         return service.findById(Long.parseLong(sc.next()));
     }
+
     public String addUsers() {
         return service.addUsers();
     }
-    public String updatePassword(Scanner sc) {
+
+
+    public Messenger updatePassword(Scanner sc) {
+
 
         return service.updatePassword(User.builder()
                 .username(sc.next())
                 .password(sc.next())
-                .confirmPassword(sc.next())
                 .build()
         );
     }
-    public String deleteUser(Scanner sc) {
+    public Messenger deleteUser(Scanner sc) {
 
         return service.delete(User.builder()
                 .username(sc.next())
@@ -81,5 +87,31 @@ public class UserController {
 //    }
     public String countUser() {
         return service.count();
+    }
+
+    public Optional<User> getOne(Scanner sc) throws SQLException {
+        return service.getOne(sc.next());
+    }
+
+    public String test() {
+        return service.test();
+    }
+
+    public List<?> findUsers() throws SQLException {
+
+        return service.findUsers();
+    }
+
+    public User getUser(Scanner sc) {
+
+        return service.getUser(sc.next());
+    }
+
+    public Messenger touchTable() throws SQLException {
+        return service.touchTable();
+    }
+
+    public Messenger removeTable() throws SQLException {
+        return service.removeTable();
     }
 }

@@ -1,4 +1,4 @@
-package board;
+package com.turing.api.board;
 import lombok.*;
 
 
@@ -7,15 +7,14 @@ import lombok.*;
 @ToString(exclude = {"id"})
 public class Board {
     private long id;
-    private String title;
-    private String content;
-    private String Writer;
+    private String boardName;
+    private String boardType;
 
     @Builder(builderMethodName = "builder")
-    public Board(long id, String title, String content, String writer) {
+    public Board(long id, String boardName, String boardType) {
         this.id = id;
-        this.title = title;
-        this.content = content;
-        Writer = writer;
+        this.boardName = boardName;
+        this.boardType = boardType;
+
     }
 }

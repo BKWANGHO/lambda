@@ -12,7 +12,7 @@ public enum NavigationOfPredicate {
     EXIT ("x", (sc)-> {
         return false;
     }),
-    USER ("u", (sc)-> {
+    USER ("usr", (sc)-> {
         //            UserView.main(sc);
         try {
             UserRouter.getview(sc);
@@ -21,13 +21,20 @@ public enum NavigationOfPredicate {
         }
         return true;
     }),
-    ARTICLE ("a", (sc)-> {
+    ARTICLE ("art", (sc)-> {
         //            ArticleView.main(sc);
-        while(ArticleRouter.getview(sc));
+        while(true) {
+            try {
+                if (!ArticleRouter.getview(sc)) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            ;
+        }
 
         return true;
     }),
-    ACCOUNT ("ac", (sc)-> {
+    ACCOUNT ("acc", (sc)-> {
 //        AccountView.main(sc);
         while (true) {
             try {
@@ -39,12 +46,31 @@ public enum NavigationOfPredicate {
         }
         return true;
     }),
-    CRAWLER ("c", (sc)-> {
+    CRAWLER ("cwl", (sc)-> {
         //            CrawlerView.main(sc);
-        while (CrawlerRouter.getview(sc));
+        while (true) {
+            try {
+                if (!CrawlerRouter.getview(sc)) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            ;
+        }
         return true;}),
-    BOARD ("b", (sc)->{
-        while (BoardRouter.getview(sc));
+    BOARD ("bbs", (sc)->{
+        while (true) {
+            try {
+                if (!BoardRouter.getview(sc)) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            ;
+        }
+        return true;
+    }),
+    SOCCER ("ssc", (sc)->{
+
+
         return true;
     }),
     ERROR("er",(sc)-> {
@@ -60,9 +86,7 @@ public enum NavigationOfPredicate {
         this.predicate = predicate;
     }
     public static boolean selectMain(Scanner sc) throws SQLException {
-        System.out.println(MenuController.getInstance().printMain(sc));
-//        System.out.println(
-//                "x-Exit u-user a-Article ac-Account c-Crawler b-Board");
+        System.out.println(MenuController.getInstance().printMain("navigate"));
         String msg = sc.next();
         return Stream.of(NavigationOfPredicate.values())
                 .filter(i->i.menu.equals(msg))

@@ -96,12 +96,12 @@ public class UserController {
 
 
 
-    public List<?> findUsers() throws SQLException {
+    public Messenger findUsers() throws SQLException {
 
         return service.findUsers();
     }
 
-    public User getUser(Scanner sc) {
+    public Messenger getUser(Scanner sc) throws SQLException {
 
         return service.getUser(sc.next());
     }

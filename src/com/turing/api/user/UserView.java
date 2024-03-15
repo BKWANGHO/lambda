@@ -42,7 +42,7 @@ public class UserView {
 
                 case "3":
                     System.out.println("=== ID검색 ===");
-                    System.out.println("아이디를 입력하세요");
+
 //                    System.out.println(ctrl.getOne(sc));
                     System.out.println(ctrl.getUser(sc)); // db 연동 및 리턴타입 변경
                     break;
@@ -61,7 +61,7 @@ public class UserView {
 
                 case "ls":
                     System.out.println("=== 회원목록 ===");
-                    ctrl.findUsers().forEach(System.out::println); // 리턴타입
+                    System.out.println(ctrl.findUsers()); // 리턴타입
                     break;
 
                 case "7":

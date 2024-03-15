@@ -2,9 +2,11 @@ package com.turing.api.enums;
 
 import com.turing.api.account.AccountController;
 import com.turing.api.crawler.CrawlerController;
+import menu.MenuController;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -12,7 +14,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public enum CrawlerRouter {
-    Exit("0",i->{
+    Exit("exit",i->{
         System.out.println("Exit");
         return false;
     }),
@@ -70,7 +72,8 @@ public enum CrawlerRouter {
         this.predicate = predicate;
     }
 
-    public static boolean getview(Scanner sc) {
+    public static boolean getview(Scanner sc) throws SQLException {
+        System.out.println(MenuController.getInstance().printMain("crawler"));
         System.out.println("[메뉴] 0-종료\n " +
                 "1-벅스뮤직\n" +
                 "2-멜론뮤직\n ");

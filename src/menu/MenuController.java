@@ -1,7 +1,9 @@
 package menu;
 
+import com.turing.api.enums.Messenger;
+
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.List;
 
 public class MenuController {
 
@@ -16,12 +18,35 @@ public class MenuController {
     }
 
 
-    public String printMain(Scanner sc) throws SQLException {
+    public String printMain(String table) throws SQLException {
         return service.printMain(new Menu.MenuBuilder()
-                .category(sc.next())
+                .category(table)
                 .build());
-
     }
 
 
+    public void createMenus() throws SQLException {
+         service.createMenus();
+    }
+
+    public void insertMenus() throws SQLException {
+       service.insertMenus();
+    }
+
+    public void deleteMenus() throws SQLException {
+        service.deleteMenus();
+    }
+
+    public Messenger returnMessenger() throws SQLException {
+        return service.returnMessenger();
+    }
+
+    public Menu returnOneMenu() throws SQLException {
+        return service.returnOneMenu();
+    }
+
+    public List<?> returnAllMenus() throws SQLException {
+        return service.returnAllMenus();
+
+    }
 }

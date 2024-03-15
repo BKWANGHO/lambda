@@ -90,12 +90,12 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
 
     @Override
-    public List<?> findUsers() throws SQLException {
+    public Messenger findUsers() throws SQLException {
         return repository.findUsers();
     }
 
     @Override
-    public User getUser(String id) {
+    public Messenger getUser(String id) throws SQLException {
         return repository.getuser(id);
     }
 

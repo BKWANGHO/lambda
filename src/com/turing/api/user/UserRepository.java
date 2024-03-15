@@ -34,7 +34,7 @@ public class UserRepository {
     }
 
 
-    public List<?> findUsers() throws SQLException {
+    public Messenger findUsers() throws SQLException {
         String sql = "select * from users";
         pstmt = connection.prepareStatement(sql);
         rs = pstmt.executeQuery();
@@ -55,14 +55,37 @@ public class UserRepository {
         } else {
             System.out.println("데이터가 없습니다.");
         }
-//        rs.next();
-//        String name = rs.getString("name");
-//        System.out.println(name);
-        return ls;
+        ls.forEach(System.out::println);
+        return ls.isEmpty() ? Messenger.FAIL : Messenger.SUCCESS;
     }
 
-    public User getuser(String id) {
-        return null;
+    public Messenger getuser(String id) throws SQLException {
+        String sql = "select * from users where username = ?";
+        pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1,id);
+        pstmt.executeUpdate();
+        rs = pstmt.executeQuery();
+                User user = new User();
+        int result =0;
+        List<User> ls = new ArrayList<>();
+        if (rs.next()) {
+            do {
+               ls.add(User.builder()
+                        .username(rs.getString("username"))
+                        .password(rs.getString("password"))
+                        .name(rs.getString("name"))
+                        .phone(rs.getString("phone"))
+                        .job(rs.getString("job"))
+                        .height(rs.getDouble("height"))
+                        .weight(rs.getDouble("weight"))
+                        .build());
+            } while ((rs.next()));
+        } else {
+            result =1;
+            System.out.println("데이터가 없습니다.");
+        }
+        ls.forEach(System.out::println);
+        return  result ==0 ? Messenger.SUCCESS : Messenger.FAIL ;
     }
 
     public Messenger touchTable() throws SQLException {

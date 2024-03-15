@@ -9,31 +9,31 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public enum AccountRouter {
-    Exit("0",i->{
+    Exit("x",i->{
         System.out.println("Exit");
         return false;
     }),
-    CreatAccount("1",i->{
+    CreatAccount("touch",i->{
         System.out.println(AccountController.getInstance().createAccount(i));
         return true;
     }),
-    Deposit("2",i->{
+    Deposit("depo",i->{
         System.out.println(AccountController.getInstance().deposit(i));
         return true;
     }),
-    Withdraw("3",i->{
+    Withdraw("with",i->{
         System.out.println(AccountController.getInstance().withdraw(i));
         return true;
     }),
-    GetBalance("4",i->{
+    GetBalance("bal",i->{
         System.out.println(AccountController.getInstance().getBalance(i));
         return true;
     }),
-    RemoveAccount("5",i->{
+    RemoveAccount("rm",i->{
         System.out.println(AccountController.getInstance().removeAccount(i));
         return true;
     }),
-    AccountList("6",i->{
+    AccountList("ls-a",i->{
         System.out.println(AccountController.getInstance().accountList());
         return true;
     }),
@@ -52,7 +52,7 @@ public enum AccountRouter {
     }
 
     public static boolean getview(Scanner sc) throws SQLException {
-        System.out.println(MenuController.getInstance().printAccount());
+        System.out.println(MenuController.getInstance().printMain("account"));
 
         String msg = sc.next();
         return Stream.of(values())

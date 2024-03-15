@@ -12,7 +12,7 @@ public class Account {
     private String accountNumber;                   //계좌번호
     private String accountHolder;                   //예금주
     private Double balance;                         //잔고
-    private LocalDateTime transactionDate;                   //거래일자
+    private LocalDateTime transactionDate;          //거래일자
     private String transation;
 
     @Builder(builderMethodName = "builder")
